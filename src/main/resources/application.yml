@@ -29,6 +29,7 @@ spring:
         user:
             name: user1
             password: 1
+            roles: USER
         oauth2:
             authorizationserver:
                 client:
@@ -50,6 +51,7 @@ spring:
                             scopes:
                                 - "openid"
                                 - "profile"
+                                - "u.test"
                                 - "message.read"
                                 - "message.write"
                         require-authorization-consent: true
