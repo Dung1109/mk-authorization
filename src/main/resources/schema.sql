@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS users
 CREATE TABLE IF NOT EXISTS authorities
 (
     username  VARCHAR(200) NOT NULL,
-    authority VARCHAR(50)  NOT NULL,
+    authority VARCHAR(256)  NOT NULL,
     CONSTRAINT fk_authorities_users FOREIGN KEY (username) REFERENCES users (username),
     CONSTRAINT username_authority UNIQUE (username, authority)
 );
@@ -116,3 +116,6 @@ CREATE TABLE IF NOT EXISTS rsa_key_pairs
     created     DATE          NOT NULL,
     UNIQUE (id, created)
 );
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
