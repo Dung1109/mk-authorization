@@ -1,3 +1,13 @@
+-- Drop tables if they exist in the reverse order of creation (to respect dependencies)
+DROP TABLE IF EXISTS rsa_key_pairs CASCADE;
+DROP TABLE IF EXISTS oauth2_authorization CASCADE;
+DROP TABLE IF EXISTS oauth2_authorization_consent CASCADE;
+DROP TABLE IF EXISTS oauth2_registered_client CASCADE;
+DROP TABLE IF EXISTS authorities CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS spring_session_attributes CASCADE;
+DROP TABLE IF EXISTS spring_session CASCADE;
+
 CREATE TABLE IF NOT EXISTS spring_session
 (
     primary_id            CHARACTER(36) PRIMARY KEY NOT NULL,
@@ -43,7 +53,7 @@ CREATE TABLE IF NOT EXISTS authorities
 CREATE TABLE IF NOT EXISTS oauth2_registered_client
 (
     id                            VARCHAR(100)                            NOT NULL,
-    client_id                     VARCHAR(100)                            NOT NULL,
+    client_id                     VARCHAR(100)                                NOT NULL,
     client_id_issued_at           TIMESTAMP     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     client_secret                 VARCHAR(200)  DEFAULT NULL,
     client_secret_expires_at      TIMESTAMP     DEFAULT NULL,
