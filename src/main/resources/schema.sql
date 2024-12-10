@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS oauth2_authorization_consent CASCADE;
 DROP TABLE IF EXISTS oauth2_registered_client CASCADE;
 DROP TABLE IF EXISTS authorities CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS userinfo CASCADE;
 DROP TABLE IF EXISTS spring_session_attributes CASCADE;
 DROP TABLE IF EXISTS spring_session CASCADE;
 
@@ -34,6 +35,7 @@ CREATE TABLE IF NOT EXISTS spring_session_attributes
 );
 --
 
+
 CREATE TABLE IF NOT EXISTS users
 (
     username VARCHAR(200) NOT NULL PRIMARY KEY,
@@ -41,10 +43,31 @@ CREATE TABLE IF NOT EXISTS users
     enabled  BOOLEAN      NOT NULL
 );
 
+CREATE TABLE userinfo
+(
+    id                    SERIAL PRIMARY KEY,
+    username              VARCHAR(255) UNIQUE NOT NULL,
+    full_name             VARCHAR(100),
+    picture               VARCHAR(255),
+    email                 VARCHAR(100),
+    email_verified        BOOLEAN,
+    gender                VARCHAR(50),
+    birthdate             DATE,
+    phone_number          VARCHAR(50),
+    phone_number_verified BOOLEAN,
+    address               VARCHAR(255),
+    position              VARCHAR(255),
+    department            VARCHAR(255),
+    note                  TEXT,
+    updated_at            TIMESTAMP,
+    created_at            TIMESTAMP,
+    CONSTRAINT fk_userinfo_users FOREIGN KEY (username) REFERENCES users (username)
+);
+
 CREATE TABLE IF NOT EXISTS authorities
 (
     username  VARCHAR(200) NOT NULL,
-    authority VARCHAR(256)  NOT NULL,
+    authority VARCHAR(256) NOT NULL,
     CONSTRAINT fk_authorities_users FOREIGN KEY (username) REFERENCES users (username),
     CONSTRAINT username_authority UNIQUE (username, authority)
 );
@@ -53,7 +76,7 @@ CREATE TABLE IF NOT EXISTS authorities
 CREATE TABLE IF NOT EXISTS oauth2_registered_client
 (
     id                            VARCHAR(100)                            NOT NULL,
-    client_id                     VARCHAR(100)                                NOT NULL,
+    client_id                     VARCHAR(100)                            NOT NULL,
     client_id_issued_at           TIMESTAMP     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     client_secret                 VARCHAR(200)  DEFAULT NULL,
     client_secret_expires_at      TIMESTAMP     DEFAULT NULL,
