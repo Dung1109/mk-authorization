@@ -4,7 +4,6 @@ VALUES ('u', '{noop}1', TRUE),
 
 INSERT INTO authorities(username, authority)
 VALUES ('a', 'ROLE_ADMIN'),
-       ('a', 'ROLE_USER'),
        ('u', 'ROLE_USER');
 
 -- Insert data for username 'u'
