@@ -4,7 +4,7 @@ VALUES ('u', '{noop}1', TRUE),
 
 INSERT INTO authorities(username, authority)
 VALUES ('a', 'ROLE_ADMIN'),
-       ('u', 'ROLE_USER');
+       ('u', 'ROLE_MANAGER');
 
 -- Insert data for username 'u'
 INSERT INTO userinfo (
@@ -29,13 +29,13 @@ INSERT INTO userinfo (
              'https://example.com/images/u.jpg',
              'useru@example.com',
              TRUE,
-             'Non-binary',
+             'male',
              '1995-03-25',
              '+1234567890',
              TRUE,
              '123 Rainbow St, Anytown, Wonderland',
              'Developer',
-             'Engineering',
+             'hr',
              'Key contributor to multiple projects.',
              NOW(),
              NOW()
@@ -64,13 +64,13 @@ INSERT INTO userinfo (
              'https://example.com/images/a.jpg',
              'alice@example.com',
              FALSE,
-             'Female',
+             'female',
              '1990-07-14',
              '+9876543210',
              FALSE,
              '456 Elm St, Othertown, Wonderland',
              'Manager',
-             'Operations',
+             'it',
              'Oversees daily operations and team management.',
              NOW(),
              NOW()
